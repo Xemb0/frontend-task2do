@@ -1,5 +1,4 @@
 /* Reset and Global Styles */
-
 * {
   margin: 0;
   padding: 0;
@@ -7,23 +6,33 @@
 }
 
 /* Basic Styles */
-
 .home {
   display: flex;
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
+  overflow: hidden; /* Prevent main content from overflowing */
 }
 
 .sidebar {
-  width: 20%; /* Sidebar takes 20% of the screen */
+  width: 20%;
   background-color: white;
   color: black;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  transition: width 0.3s, padding 0.3s; /* Transition for width and padding */
+  transition: transform 0.3s, padding 0.3s; /* Transition for transform and padding */
   overflow-y: auto; /* Add vertical scroll */
   outline: 2px solid red; /* Just for visualization */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  transform: translateX(-100%); /* Initially hide sidebar */
+}
+
+.sidebar.show-sidebar {
+  transform: translateX(0); /* Show sidebar */
 }
 
 .sidebar.hide-names {
@@ -78,6 +87,8 @@
   background-color: snow;
   flex: 1; /* Main content takes remaining space */
   position: relative;
+  overflow-y: auto; /* Allow main content to scroll */
+  padding: 1rem; /* Add padding to main content */
 }
 
 .title-bar {
@@ -106,49 +117,29 @@
 
 .task-columns {
   display: flex;
+  flex-wrap: wrap; /* Ensure columns wrap on smaller screens */
   justify-content: space-between;
-  padding: 3rem;
-  height: calc(100% - 60px); /* Adjust height to full screen minus the title-bar */
+  padding: 1rem;
+  gap: 1rem; /* Gap between columns */
+  overflow-y: auto; /* Allow vertical scroll if content exceeds height */
+  flex: 1; /* Take remaining height */
 }
 
 .task-column {
-  height: 100%;
-  outline: 2px solid rgba(0, 128, 0, 0.041);
-  background: #f1f1f1;
-  padding: 1rem;
   flex: 1; /* Each column takes equal space */
-  margin: 1rem; /* Add margin for spacing between columns */
+  min-width: calc(25% - 2rem); /* Minimum width for each column */
+  max-width: calc(50% - 2rem); /* Maximum width for each column */
+  margin-bottom: 2rem; /* Bottom margin for spacing between columns */
+  padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  background-color: #f1f1f1;
   transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effect */
 }
 
 .task-column:hover {
   transform: scale(1.05); /* Slight pop effect on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly bigger shadow on hover */
-}
-
-.task-column:first-child {
-  margin-left: 0; /* Remove left margin for the first column */
-}
-
-.task-column:last-child {
-  margin-right: 0; /* Remove right margin for the last column */
-}
-
-.task-column {
-  background-color: #e0f7fa;
-}
-
-.task-column.this-week {
-  background-color: #6bff77;
-}
-
-.task-column.this-month-year {
-  background-color: #fce4ec;
 }
 
 .task-column h3 {
@@ -224,30 +215,33 @@
   color: #fff;
 }
 
-/* Responsive Design */
+/* Floating Button */
+.floating-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: #007BFF;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1100;
+}
 
+.floating-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 5%; /* Narrow width for smaller screens */
+    display: none; /* Hide sidebar on smaller screens */
   }
 
-  .sidebar.hide-names {
-    width: 5%; /* Ensure width stays consistent when names are hidden */
-  }
-
-  .sidebar ul li {
-    display: none; /* Hide list items */
-  }
-
-  .sidebar ul li.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-  }
-
-  .sidebar h2 {
-    display: none; /* Hide "Task Manager" text on smaller screens */
+  .floating-button {
+    display: block; /* Show floating button on smaller screens */
   }
 
   .task-columns {
@@ -257,6 +251,7 @@
 
   .task-column {
     margin: 0.5rem 0; /* Adjust margin for spacing between columns */
+    max-width: 100%; /* Full width for each column on smaller screens */
   }
 
   .task-item {
