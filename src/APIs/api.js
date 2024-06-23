@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/tasks';
+const API_URL = 'https://backend-task2do-1.onrender.com';
 
 export const fetchTasks = async () => {
   try {
