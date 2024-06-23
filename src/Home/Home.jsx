@@ -150,18 +150,22 @@ const TaskColumn = ({ title, tasks, handleAddTask, handleEditTask, deleteTask })
   return (
     <div className="task-column">
       <h3>{title}</h3>
-      <button className="add-task-button" onClick={handleAddTask}>
+      <button className="button" onClick={handleAddTask}>
         <AddIcon />
       </button>
       {tasks.map((task) => (
-        <div className="task" key={task._id}>
+        <div className="todo" key={task._id}>
           <h4>{task.title}</h4>
           <p>{task.description}</p>
           <div className="task-actions">
-            <button onClick={() => handleEditTask(task)}>
+            <button  
+            className='button'
+            onClick={() => handleEditTask(task)}>
               <EditIcon />
             </button>
-            <button onClick={() => deleteTask(task._id)}>
+            <button 
+            className='button'
+            onClick={() => deleteTask(task._id)}>
               <DeleteIcon />
             </button>
           </div>
