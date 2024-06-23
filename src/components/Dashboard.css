@@ -1,0 +1,26 @@
+.dashboard {
+  padding: 20px;
+}
+
+.progress-bars {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  margin-bottom: 20px;
+}
+
+.task-name {
+  display: inline-block;
+  width: 100px;
+}
+
+.progress {
+  display: inline-block;
+  height: 20px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 5px;
+}

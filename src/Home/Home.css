@@ -1,0 +1,265 @@
+/* Reset and Global Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic Styles */
+
+.home {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+}
+
+.sidebar {
+  width: 20%; /* Sidebar takes 20% of the screen */
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s, padding 0.3s; /* Transition for width and padding */
+  overflow-y: auto; /* Add vertical scroll */
+  outline: 2px solid red; /* Just for visualization */
+}
+
+.sidebar.hide-names {
+  width: auto; /* Adjust width when names are hidden */
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-title .toggle-button {
+  margin-right: 0.5rem;
+}
+
+.sidebar h2 {
+  margin: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  transition: background 0.3s, border-radius 0.3s, padding 0.3s; /* Transition for padding */
+}
+
+.user-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebar a:hover {
+  background: #007BFF;
+  color: white;
+  border-radius: 1rem;
+}
+
+.main {
+  background-color: snow;
+  flex: 1; /* Main content takes remaining space */
+  position: relative;
+}
+
+.title-bar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-bar h2 {
+  margin: 0;
+}
+
+.user-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-icon .img {
+  font-size: 5rem; /* Adjust the icon size */
+}
+
+.task-columns {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+  height: calc(100% - 60px); /* Adjust height to full screen minus the title-bar */
+}
+
+.task-column {
+  height: 100%;
+  outline: 2px solid rgba(0, 128, 0, 0.041);
+  background: #f1f1f1;
+  padding: 1rem;
+  flex: 1; /* Each column takes equal space */
+  margin: 1rem; /* Add margin for spacing between columns */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effect */
+}
+
+.task-column:hover {
+  transform: scale(1.05); /* Slight pop effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly bigger shadow on hover */
+}
+
+.task-column:first-child {
+  margin-left: 0; /* Remove left margin for the first column */
+}
+
+.task-column:last-child {
+  margin-right: 0; /* Remove right margin for the last column */
+}
+
+.task-column {
+  background-color: #e0f7fa;
+}
+
+.task-column.this-week {
+  background-color: #6bff77;
+}
+
+.task-column.this-month-year {
+  background-color: #fce4ec;
+}
+
+.task-column h3 {
+  margin-bottom: 1rem;
+}
+
+.tasks {
+  flex: 1; /* Take remaining height */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+}
+
+.add-task-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.add-task-button .add-icon {
+  color: #007bff;
+  margin-right: 0.5rem;
+}
+
+.add-task-button span {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.task-item {
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.task-item:hover {
+  transform: scale(1.02);
+}
+
+.task-item .task-title {
+  flex-grow: 1;
+}
+
+.task-item .task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-item .task-actions button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+}
+
+.task-item .task-actions button:hover {
+  background-color: #e0e0e0;
+}
+
+.task-item .task-actions .complete-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.task-item .task-actions .delete-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 5%; /* Narrow width for smaller screens */
+  }
+
+  .sidebar.hide-names {
+    width: 5%; /* Ensure width stays consistent when names are hidden */
+  }
+
+  .sidebar ul li {
+    display: none; /* Hide list items */
+  }
+
+  .sidebar ul li.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  .sidebar h2 {
+    display: none; /* Hide "Task Manager" text on smaller screens */
+  }
+
+  .task-columns {
+    flex-direction: column;
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .task-column {
+    margin: 0.5rem 0; /* Adjust margin for spacing between columns */
+  }
+
+  .task-item {
+    padding: 0.5rem;
+  }
+}
