@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  transition: background 0.3s, border-radius 0.3s, padding 0.3s; /* Transition for padding */
+  transition:  0.3s, border-radius 0.3s, padding 0.3s; /* Transition for padding */
 }
 
 .user-icon {
@@ -149,9 +149,11 @@
 .tasks {
   flex: 1; /* Take remaining height */
   overflow-y: auto; /* Allow scrolling if content exceeds height */
+  padding: 1rem;
 }
 
 .add-task-button {
+  background-color: #ff9e97;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -165,12 +167,13 @@
 
 .add-task-button span {
   color: #007bff;
+
   font-weight: bold;
 }
 
 .task-item {
+
   padding: 0.5rem 1rem;
-  background: #fff;
   border-radius: 4px;
   margin-bottom: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -248,12 +251,12 @@
     flex-direction: column;
     padding: 1rem; /* Adjust padding for smaller screens */
   }
-
+  
   .task-column {
     margin: 0.5rem 0; /* Adjust margin for spacing between columns */
     max-width: 100%; /* Full width for each column on smaller screens */
   }
-
+  
   .task-item {
     padding: 0.5rem;
   }
